@@ -21,14 +21,14 @@ target_guild = discord.Object(id=TARGET_GUILD_ID)
 # --- NOUVEAUX IDs DE RÔLES POUR LES 9 BOUTONS ---
 # REMPLACER LES NUMÉROS (IDs) ET LES NOMS DES RÔLES
 ROLES_PING = {
-    "Coca": {"id": 1437803787061301308, "label": "PING Rôle A"},
-    "Skypeia": {"id": 1437803979336843346, "label": "PING Rôle B"},
-    "Origami": {"id": 1437804353531678863, "label": "PING Rôle C"},
-    "Pase-Hyfic": {"id": 1437804605605019739, "label": "PING Rôle D"},
-    "Sleeping": {"id": 1437803468474552462, "label": "PING Rôle E"},
-    "Sinaloa": {"id": 1437803888421113898, "label": "PING Rôle F"},
-    "La Bande": {"id": 1437804134660050964, "label": "PING Rôle G"},
-    "Bro's": {"id": 1437804247042494474, "label": "PING Rôle H"},
+    "Coca": {"id": 1437803787061301308, "label": "PING Coca"},
+    "Skypeia": {"id": 1437803979336843346, "label": "PING Skypeia"},
+    "Origami": {"id": 1437804353531678863, "label": "PING Origami"},
+    "Pase-Hyfic": {"id": 1437804605605019739, "label": "PING Pase-Hyfic"},
+    "Sleeping": {"id": 1437803468474552462, "label": "PING Sleeping"},
+    "Sinaloa": {"id": 1437803888421113898, "label": "PING Sinaloa"},
+    "La Bande": {"id": 1437804134660050964, "label": "PING La Bande"},
+    "Bro's": {"id": 1437804247042494474, "label": "PING Bro's"},
 }
 
 
@@ -78,7 +78,7 @@ class PingButton(Button):
             # --- MESSAGE D'ALERTE SIMPLIFIÉ ---
             alert_message_content = (
                 f"{role_mention} "  # Mention du rôle ciblé
-                f"**Votre percepteur est attaqué ! 😡 PING ATK ({self.role_name})**"
+                f"**Votre percepteur est attaqué ! )**"
             )
             
             # Envoi du message d'alerte dans le salon PERCO_CHANNEL
@@ -89,7 +89,7 @@ class PingButton(Button):
             
             # Réponse éphémère à l'utilisateur
             await interaction.followup.send(
-                f"✅ Alerte PING ATK envoyée pour le rôle **{self.role_name}** ! GO DEF !", 
+                f"✅ Alerte PING DEF envoyée pour le rôle **{self.role_name}**  !", 
                 ephemeral=True
             )
         else:
@@ -127,7 +127,7 @@ async def setup_ping_button(interaction: discord.Interaction):
 
     # Création de l'embed pour le panneau de contrôle
     setup_embed = discord.Embed(
-        title="📢 Panneau de Contrôle ATK Rapide",
+        title="📢 Panneau de Contrôle DEF Rapide",
         description="**CLIQUEZ UNE FOIS** sur le bouton correspondant au rôle souhaité pour envoyer un ping unique d'alerte Percepteur.",
         color=discord.Color.blue()
     )
