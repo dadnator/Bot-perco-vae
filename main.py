@@ -6,68 +6,97 @@ from discord.ui import View, Button
 from keep_alive import keep_alive
 import asyncio
 
-# --- VOS CONSTANTES ---
+# --- VOS CONSTANTES (Gardées) ---
 token = os.environ['TOKEN_BOT_DISCORD']
 
-# Salon OÙ LE PING SERA ENVOYÉ (Alerte)
 PERCO_CHANNEL_ID = 1241543017358299208 
-# Salon OÙ LE BOUTON SERA AFFICHÉ (Setup)
 CONFIRM_CHANNEL_ID = 1241543162078695595 
 
-ROLE_ID = 1219962903260696596
+# ID du rôle principal (pour l'exemple initial, on peut le réutiliser ou le supprimer)
+# ROLE_ID = 1219962903260696596 # Non utilisé directement dans la nouvelle structure
 TARGET_GUILD_ID = 1213932847518187561
 
 target_guild = discord.Object(id=TARGET_GUILD_ID)
 
+# --- NOUVEAUX IDs DE RÔLES POUR LES 9 BOUTONS ---
+# REMPLACER LES NUMÉROS (IDs) ET LES NOMS DES RÔLES
+ROLES_PING = {
+    "Coca": {"id": 121000000000000001, "label": "PING Rôle A"},
+    "Skypeia": {"id": 121000000000000002, "label": "PING Rôle B"},
+    "Origami": {"id": 121000000000000003, "label": "PING Rôle C"},
+    "Pase-Hyfic": {"id": 121000000000000004, "label": "PING Rôle D"},
+    "Sleeping": {"id": 121000000000000005, "label": "PING Rôle E"},
+    "Sinaloa": {"id": 121000000000000006, "label": "PING Rôle F"},
+    "La Bande": {"id": 121000000000000007, "label": "PING Rôle G"},
+    "Bro's": {"id": 121000000000000008, "label": "PING Rôle H"},
+}
+
+
 # Configuration du bot
 intents = discord.Intents.default()
+# Nécessaire pour les interactions par boutons persistants
 bot = commands.Bot(command_prefix="/", intents=intents)
 
 
-# --- 1. CLASSE POUR LE BOUTON INTERACTIF (VIEW) ---
+# --- 2. CLASSE POUR LE BOUTON INTERACTIF (VIEW) ---
 class PingAttackView(View):
     def __init__(self):
+        # timeout=None est crucial pour que les boutons fonctionnent après le redémarrage du bot.
         super().__init__(timeout=None)
-        # S'assure que l'ID du bouton est permanent pour l'ajout après redémarrage
-        self.ping_button.custom_id = "ping_atk_button_v1"
+        
+        # Création dynamique des 9 boutons
+        for role_key, role_data in ROLES_PING.items():
+            self.add_item(
+                PingButton(
+                    role_id=role_data["id"],
+                    role_name=role_key,
+                    label=role_data["label"]
+                )
+            )
 
-    @discord.ui.button(
-        label="🚨 PING PERCEPTEUR",
-        style=discord.ButtonStyle.red,
-        emoji="⚔️"
-    )
-    async def ping_button(self, interaction: discord.Interaction, button: Button):
+# --- 3. CLASSE DU BOUTON INDIVIDUEL (pour réutiliser le code) ---
+class PingButton(Button):
+    def __init__(self, role_id: int, role_name: str, label: str):
+        super().__init__(
+            label=label,
+            style=discord.ButtonStyle.red,
+            emoji="⚔️",
+            # Le custom_id est utilisé par Discord pour relier l'action du bouton à cette classe
+            custom_id=f"ping_button_{role_name.lower().replace(' ', '_')}" 
+        )
+        self.role_id = role_id
+        self.role_name = role_name
+        
+    async def callback(self, interaction: discord.Interaction):
         # Répond immédiatement pour éviter le timeout
         await interaction.response.defer(ephemeral=True)
         
-        # Récupération des salons et de la mention de rôle
-        perco_channel = bot.get_channel(PERCO_CHANNEL_ID)
+        perco_channel = interaction.client.get_channel(PERCO_CHANNEL_ID)
+        role_mention = f"<@&{self.role_id}>"
         
         if perco_channel:
             # --- MESSAGE D'ALERTE SIMPLIFIÉ ---
             alert_message_content = (
-                f"{role_mention} "  # Mention du rôle
-                "**Votre percepteur est attaqué ! 😡 PING ATK**"
+                f"{role_mention} "  # Mention du rôle ciblé
+                f"**Votre percepteur est attaqué ! 😡 PING ATK ({self.role_name})**"
             )
             
             # Envoi du message d'alerte dans le salon PERCO_CHANNEL
             await perco_channel.send(
                 content=alert_message_content,
-                # Autorise la mention de rôles
                 allowed_mentions=discord.AllowedMentions(roles=True) 
             )
             
-            # Envoi du remerciement (Optionnel)
-            if thanks_channel:
-                 await thanks_channel.send(f"Merci à {interaction.user.mention} d'avoir déclenché l'alerte rapide 🫂")
-
             # Réponse éphémère à l'utilisateur
-            await interaction.followup.send("✅ Alerte PING ATK envoyée ! GO DEF !", ephemeral=True)
+            await interaction.followup.send(
+                f"✅ Alerte PING ATK envoyée pour le rôle **{self.role_name}** ! GO DEF !", 
+                ephemeral=True
+            )
         else:
             await interaction.followup.send("❌ Le salon d'alerte est introuvable. Veuillez vérifier PERCO_CHANNEL_ID.", ephemeral=True)
 
 
-# --- 2. ÉVÉNEMENTS DU BOT ---
+# --- 4. ÉVÉNEMENTS DU BOT (Restent les mêmes) ---
 
 @bot.event
 async def on_ready():
@@ -76,6 +105,7 @@ async def on_ready():
     
     try:
         # Ajout de la View persistante
+        # IMPORTANT : Il faut ajouter la View principale (PingAttackView)
         bot.add_view(PingAttackView())
         
         # Synchronisation des commandes slash
@@ -88,36 +118,33 @@ async def on_ready():
         print(f"❌ Erreur lors de la synchronisation ou de l'ajout de la View : {e}")
 
 
-# --- 3. COMMANDE POUR LE SETUP (création du message permanent) ---
+# --- 5. COMMANDE POUR LE SETUP (création du message permanent) ---
 
-@bot.tree.command(name="setup_ping_button", description="Envoie l'embed permanent avec le bouton d'alerte.", guild=target_guild)
+@bot.tree.command(name="setup_ping_button", description="Envoie l'embed permanent avec les 9 boutons d'alerte.", guild=target_guild)
 @app_commands.default_permissions(administrator=True) 
 async def setup_ping_button(interaction: discord.Interaction):
-    """
-    Envoie le message qui contient le bouton d'alerte dans le salon où cette commande est tapée.
-    """
     await interaction.response.defer(ephemeral=True)
 
     # Création de l'embed pour le panneau de contrôle
     setup_embed = discord.Embed(
         title="📢 Panneau de Contrôle ATK Rapide",
-        description="**CLIQUEZ UNE FOIS** sur le bouton ci-dessous pour envoyer un ping unique d'alerte Percepteur.",
+        description="**CLIQUEZ UNE FOIS** sur le bouton correspondant au rôle souhaité pour envoyer un ping unique d'alerte Percepteur.",
         color=discord.Color.blue()
     )
     setup_embed.set_footer(text="Ce message est permanent. Ne le supprimez pas.")
     
     try:
-        # Envoi du message permanent avec la View (le bouton)
+        # Envoi du message permanent avec la View (les 9 boutons)
         await interaction.channel.send(
             embed=setup_embed, 
             view=PingAttackView()
         )
         
-        await interaction.followup.send("✅ Panneau de contrôle du bouton d'alerte envoyé dans ce salon.", ephemeral=True)
+        await interaction.followup.send("✅ Panneau de contrôle des 9 boutons d'alerte envoyé dans ce salon.", ephemeral=True)
     except Exception as e:
         await interaction.followup.send(f"❌ Erreur lors de l'envoi du message : {e}", ephemeral=True)
 
 
 # --- LANCEMENT DU BOT ---
-# keep_alive() # Optionnel
+keep_alive() # Optionnel
 bot.run(token)
