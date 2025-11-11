@@ -18,7 +18,7 @@ target_guild = discord.Object(id=TARGET_GUILD_ID)
 
 # --- URL DE L'IMAGE POUR L'EMBED DES BOUTONS ---
 # ⚠️ REMPLACEZ CETTE CHAÎNE par l'URL publique de votre image.
-SETUP_IMAGE_URL = "https://cdn.discordapp.com/attachments/1213966404886470676/1437856695375237220/image0.png?ex=6914c3e6&is=69137266&hm=c157790f81a8074898fb44cd33683cdb329dd9f303e8b6d1c09377e055275325&" 
+SETUP_IMAGE_URL = "https://i.imgur.com/8setyQq.png" 
 
 
 # --- IDs DE RÔLES, LABELS ET ÉMOJIS POUR LES 8 BOUTONS ---
