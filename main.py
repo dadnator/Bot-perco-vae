@@ -9,26 +9,26 @@ import asyncio
 # --- VOS CONSTANTES (Gardées) ---
 token = os.environ['TOKEN_BOT_DISCORD']
 
-PERCO_CHANNEL_ID = 1241543017358299208 
-CONFIRM_CHANNEL_ID = 1241543162078695595 
+PERCO_CHANNEL_ID = 1366384335615164529 
+CONFIRM_CHANNEL_ID = 1366384437503332464 
 
 # ID du rôle principal (pour l'exemple initial, on peut le réutiliser ou le supprimer)
 # ROLE_ID = 1219962903260696596 # Non utilisé directement dans la nouvelle structure
-TARGET_GUILD_ID = 1213932847518187561
+TARGET_GUILD_ID = 1366369136648654868
 
 target_guild = discord.Object(id=TARGET_GUILD_ID)
 
 # --- NOUVEAUX IDs DE RÔLES POUR LES 9 BOUTONS ---
 # REMPLACER LES NUMÉROS (IDs) ET LES NOMS DES RÔLES
 ROLES_PING = {
-    "Coca": {"id": 121000000000000001, "label": "PING Rôle A"},
-    "Skypeia": {"id": 121000000000000002, "label": "PING Rôle B"},
-    "Origami": {"id": 121000000000000003, "label": "PING Rôle C"},
-    "Pase-Hyfic": {"id": 121000000000000004, "label": "PING Rôle D"},
-    "Sleeping": {"id": 121000000000000005, "label": "PING Rôle E"},
-    "Sinaloa": {"id": 121000000000000006, "label": "PING Rôle F"},
-    "La Bande": {"id": 121000000000000007, "label": "PING Rôle G"},
-    "Bro's": {"id": 121000000000000008, "label": "PING Rôle H"},
+    "Coca": {"id": 1437803787061301308, "label": "PING Rôle A"},
+    "Skypeia": {"id": 1437803979336843346, "label": "PING Rôle B"},
+    "Origami": {"id": 1437804353531678863, "label": "PING Rôle C"},
+    "Pase-Hyfic": {"id": 1437804605605019739, "label": "PING Rôle D"},
+    "Sleeping": {"id": 1437803468474552462, "label": "PING Rôle E"},
+    "Sinaloa": {"id": 1437803888421113898, "label": "PING Rôle F"},
+    "La Bande": {"id": 1437804134660050964, "label": "PING Rôle G"},
+    "Bro's": {"id": 1437804247042494474, "label": "PING Rôle H"},
 }
 
 
