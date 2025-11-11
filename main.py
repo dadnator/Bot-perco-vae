@@ -61,7 +61,7 @@ class PingButton(Button):
             # MESSAGE D'ALERTE (simple, pas d'embed)
             alert_message_content = (
                 f"{role_mention} "
-                f"**Votre percepteur est attaqué ! 😡 PING DEF ({self.role_name})**"
+                f"**Votre percepteur est attaqué !**"
             )
             
             # Envoi du message d'alerte dans le salon PERCO_CHANNEL
@@ -72,7 +72,7 @@ class PingButton(Button):
             
             # Réponse éphémère à l'utilisateur
             await interaction.followup.send(
-                f"✅ Alerte PING DEF envoyée pour le rôle **{self.role_name}** ! GO DEF !", 
+                f"✅ Alerte PING DEF envoyée pour le rôle **{self.role_name}** ! Merci pour le ping!", 
                 ephemeral=True
             )
         else:
@@ -123,7 +123,7 @@ async def setup_ping_button(interaction: discord.Interaction):
 
     # Création de l'embed pour le panneau de contrôle
     setup_embed = discord.Embed(
-        title="📢 Panneau de Contrôle DEF Rapide (8 Groupes)",
+        title="📢 Un Perco Attaqué ",
         description="**CLIQUEZ UNE FOIS** sur le bouton correspondant au groupe souhaité pour envoyer un ping unique d'alerte Percepteur.",
         color=discord.Color.blue()
     )
