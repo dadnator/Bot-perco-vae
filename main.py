@@ -20,12 +20,12 @@ target_guild = discord.Object(id=TARGET_GUILD_ID)
 ROLES_PING = {
     "Coca": {"id": 1437803787061301308, "label": "PING Coca", "emoji": "<:coca:1337898909321793588>"},
     "Skypeia": {"id": 1437803979336843346, "label": "PING Skypeia", "emoji": "<:sky:1337898940963750010>"},
-    "Origami": {"id": 1437804353531678863, "label": "PING Origami", "emoji": "<:emoji_2:1399792098529509546>"},
-    "Pase-Hyfic": {"id": 1437804605605019739, "label": "PING Pase-Hyfic", "emoji": "🌊"},
-    "Sleeping": {"id": 1437803468474552462, "label": "PING Sleeping", "emoji": "😴"},
-    "Sinaloa": {"id": 1437803888421113898, "label": "PING Sinaloa", "emoji": "🌵"},
-    "La Bande": {"id": 1437804134660050964, "label": "PING La Bande", "emoji": "🧑‍🤝‍🧑"},
-    "Bro's": {"id": 1437804247042494474, "label": "PING Bro's", "emoji": "💪"},
+    "Origami": {"id": 1437804353531678863, "label": "PING Origami", "emoji": "<:ori:1337898349478805566>"},
+    "Pase-Hyfic": {"id": 1437804605605019739, "label": "PING Pase-Hyfic", "emoji": "<:pase:1355031214033076326>"},
+    "Sleeping": {"id": 1437803468474552462, "label": "PING Sleeping", "emoji": "<:TheSleepingBlossoms:1359180403155406878>"},
+    "Sinaloa": {"id": 1437803888421113898, "label": "PING Sinaloa", "emoji": "<:SINALOA:1391477497618759720>"},
+    "La Bande": {"id": 1437804134660050964, "label": "PING La Bande", "emoji": "<:LABANDE:1388101932886917222>"},
+    "Bro's": {"id": 1437804247042494474, "label": "PING Bro's", "emoji": "<:Bros:1435705562066063491>"},
 }
 
 
