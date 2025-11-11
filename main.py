@@ -12,73 +12,52 @@ token = os.environ['TOKEN_BOT_DISCORD']
 PERCO_CHANNEL_ID = 1366384335615164529 
 CONFIRM_CHANNEL_ID = 1366384437503332464 
 
-# ID du rôle principal (pour l'exemple initial, on peut le réutiliser ou le supprimer)
-# ROLE_ID = 1219962903260696596 # Non utilisé directement dans la nouvelle structure
 TARGET_GUILD_ID = 1366369136648654868
 
 target_guild = discord.Object(id=TARGET_GUILD_ID)
 
-# --- NOUVEAUX IDs DE RÔLES POUR LES 9 BOUTONS ---
-# REMPLACER LES NUMÉROS (IDs) ET LES NOMS DES RÔLES
+# --- IDs DE RÔLES, LABELS ET ÉMOJIS POUR LES 8 BOUTONS ---
 ROLES_PING = {
-    "Coca": {"id": 1437803787061301308, "label": "PING Coca"},
-    "Skypeia": {"id": 1437803979336843346, "label": "PING Skypeia"},
-    "Origami": {"id": 1437804353531678863, "label": "PING Origami"},
-    "Pase-Hyfic": {"id": 1437804605605019739, "label": "PING Pase-Hyfic"},
-    "Sleeping": {"id": 1437803468474552462, "label": "PING Sleeping"},
-    "Sinaloa": {"id": 1437803888421113898, "label": "PING Sinaloa"},
-    "La Bande": {"id": 1437804134660050964, "label": "PING La Bande"},
-    "Bro's": {"id": 1437804247042494474, "label": "PING Bro's"},
+    "Coca": {"id": 1437803787061301308, "label": "PING Coca", "emoji": "🥤"},
+    "Skypeia": {"id": 1437803979336843346, "label": "PING Skypeia", "emoji": "☁️"},
+    "Origami": {"id": 1437804353531678863, "label": "PING Origami", "emoji": "📄"},
+    "Pase-Hyfic": {"id": 1437804605605019739, "label": "PING Pase-Hyfic", "emoji": "🌊"},
+    "Sleeping": {"id": 1437803468474552462, "label": "PING Sleeping", "emoji": "😴"},
+    "Sinaloa": {"id": 1437803888421113898, "label": "PING Sinaloa", "emoji": "🌵"},
+    "La Bande": {"id": 1437804134660050964, "label": "PING La Bande", "emoji": "🧑‍🤝‍🧑"},
+    "Bro's": {"id": 1437804247042494474, "label": "PING Bro's", "emoji": "💪"},
 }
 
 
 # Configuration du bot
 intents = discord.Intents.default()
-# Nécessaire pour les interactions par boutons persistants
 bot = commands.Bot(command_prefix="/", intents=intents)
 
 
-# --- 2. CLASSE POUR LE BOUTON INTERACTIF (VIEW) ---
-class PingAttackView(View):
-    def __init__(self):
-        # timeout=None est crucial pour que les boutons fonctionnent après le redémarrage du bot.
-        super().__init__(timeout=None)
-        
-        # Création dynamique des 9 boutons
-        for role_key, role_data in ROLES_PING.items():
-            self.add_item(
-                PingButton(
-                    role_id=role_data["id"],
-                    role_name=role_key,
-                    label=role_data["label"]
-                )
-            )
-
-# --- 3. CLASSE DU BOUTON INDIVIDUEL (pour réutiliser le code) ---
+# --- 1. CLASSE POUR LE BOUTON INDIVIDUEL ---
 class PingButton(Button):
-    def __init__(self, role_id: int, role_name: str, label: str):
+    # Ajout du paramètre 'emoji_btn' et style fixé à danger (rouge)
+    def __init__(self, role_id: int, role_name: str, label: str, emoji_btn: str):
         super().__init__(
             label=label,
-            style=discord.ButtonStyle.red,
-            emoji="⚔️",
-            # Le custom_id est utilisé par Discord pour relier l'action du bouton à cette classe
+            style=discord.ButtonStyle.danger,  # Style ROUGE fixe
+            emoji=emoji_btn,                   # Utilise l'émoji unique
             custom_id=f"ping_button_{role_name.lower().replace(' ', '_')}" 
         )
         self.role_id = role_id
         self.role_name = role_name
         
     async def callback(self, interaction: discord.Interaction):
-        # Répond immédiatement pour éviter le timeout
         await interaction.response.defer(ephemeral=True)
         
         perco_channel = interaction.client.get_channel(PERCO_CHANNEL_ID)
         role_mention = f"<@&{self.role_id}>"
         
         if perco_channel:
-            # --- MESSAGE D'ALERTE SIMPLIFIÉ ---
+            # --- MESSAGE D'ALERTE CORRIGÉ ET COMPLET ---
             alert_message_content = (
                 f"{role_mention} "  # Mention du rôle ciblé
-                f"**Votre percepteur est attaqué ! )**"
+                f"**Votre percepteur est attaqué ! 😡 PING DEF ({self.role_name})**"
             )
             
             # Envoi du message d'alerte dans le salon PERCO_CHANNEL
@@ -89,23 +68,38 @@ class PingButton(Button):
             
             # Réponse éphémère à l'utilisateur
             await interaction.followup.send(
-                f"✅ Alerte PING DEF envoyée pour le rôle **{self.role_name}**  !", 
+                f"✅ Alerte PING DEF envoyée pour le rôle **{self.role_name}** ! GO DEF !", 
                 ephemeral=True
             )
         else:
             await interaction.followup.send("❌ Le salon d'alerte est introuvable. Veuillez vérifier PERCO_CHANNEL_ID.", ephemeral=True)
 
 
-# --- 4. ÉVÉNEMENTS DU BOT (Restent les mêmes) ---
+# --- 2. CLASSE CONTENANT TOUS LES BOUTONS (VIEW) ---
+class PingAttackView(View):
+    def __init__(self):
+        super().__init__(timeout=None)
+        
+        # Création dynamique des 8 boutons
+        for role_key, role_data in ROLES_PING.items():
+            self.add_item(
+                PingButton(
+                    role_id=role_data["id"],
+                    role_name=role_key,
+                    label=role_data["label"],
+                    emoji_btn=role_data["emoji"]  # Passage de l'émoji
+                )
+            )
 
+
+# --- 3. ÉVÉNEMENTS DU BOT ---
 @bot.event
 async def on_ready():
     """Se déclenche lorsque le bot est prêt."""
-    print(f"✅ Connecté en tant que {bot.user}")
+    print(f"✅ Bot Connecté en tant que {bot.user}")
     
     try:
         # Ajout de la View persistante
-        # IMPORTANT : Il faut ajouter la View principale (PingAttackView)
         bot.add_view(PingAttackView())
         
         # Synchronisation des commandes slash
@@ -118,33 +112,33 @@ async def on_ready():
         print(f"❌ Erreur lors de la synchronisation ou de l'ajout de la View : {e}")
 
 
-# --- 5. COMMANDE POUR LE SETUP (création du message permanent) ---
+# --- 4. COMMANDE POUR LE SETUP (création du message permanent) ---
 
-@bot.tree.command(name="setup_ping_button", description="Envoie l'embed permanent avec les 9 boutons d'alerte.", guild=target_guild)
+@bot.tree.command(name="setup_ping_button", description="Envoie l'embed permanent avec les 8 boutons d'alerte.", guild=target_guild)
 @app_commands.default_permissions(administrator=True) 
 async def setup_ping_button(interaction: discord.Interaction):
     await interaction.response.defer(ephemeral=True)
 
     # Création de l'embed pour le panneau de contrôle
     setup_embed = discord.Embed(
-        title="📢 Panneau de Contrôle DEF Rapide",
-        description="**CLIQUEZ UNE FOIS** sur le bouton correspondant au rôle souhaité pour envoyer un ping unique d'alerte Percepteur.",
+        title="📢 Panneau de Contrôle DEF Rapide (8 Groupes)",
+        description="**CLIQUEZ UNE FOIS** sur le bouton correspondant au groupe souhaité pour envoyer un ping unique d'alerte Percepteur.",
         color=discord.Color.blue()
     )
     setup_embed.set_footer(text="Ce message est permanent. Ne le supprimez pas.")
     
     try:
-        # Envoi du message permanent avec la View (les 9 boutons)
+        # Envoi du message permanent avec la View (les 8 boutons)
         await interaction.channel.send(
             embed=setup_embed, 
             view=PingAttackView()
         )
         
-        await interaction.followup.send("✅ Panneau de contrôle des 9 boutons d'alerte envoyé dans ce salon.", ephemeral=True)
+        await interaction.followup.send("✅ Panneau de contrôle des 8 boutons d'alerte envoyé dans ce salon.", ephemeral=True)
     except Exception as e:
         await interaction.followup.send(f"❌ Erreur lors de l'envoi du message : {e}", ephemeral=True)
 
 
 # --- LANCEMENT DU BOT ---
-keep_alive() # Optionnel
+keep_alive()
 bot.run(token)
