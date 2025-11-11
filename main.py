@@ -18,9 +18,9 @@ target_guild = discord.Object(id=TARGET_GUILD_ID)
 
 # --- IDs DE RÔLES, LABELS ET ÉMOJIS POUR LES 8 BOUTONS ---
 ROLES_PING = {
-    "Coca": {"id": 1437803787061301308, "label": "PING Coca", "emoji": "🥤"},
-    "Skypeia": {"id": 1437803979336843346, "label": "PING Skypeia", "emoji": "☁️"},
-    "Origami": {"id": 1437804353531678863, "label": "PING Origami", "emoji": "📄"},
+    "Coca": {"id": 1437803787061301308, "label": "PING Coca", "emoji": "<:coca:1337898909321793588>"},
+    "Skypeia": {"id": 1437803979336843346, "label": "PING Skypeia", "emoji": "<:sky:1337898940963750010>"},
+    "Origami": {"id": 1437804353531678863, "label": "PING Origami", "emoji": "<:emoji_2:1399792098529509546>"},
     "Pase-Hyfic": {"id": 1437804605605019739, "label": "PING Pase-Hyfic", "emoji": "🌊"},
     "Sleeping": {"id": 1437803468474552462, "label": "PING Sleeping", "emoji": "😴"},
     "Sinaloa": {"id": 1437803888421113898, "label": "PING Sinaloa", "emoji": "🌵"},
