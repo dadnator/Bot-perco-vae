@@ -6,7 +6,7 @@ from discord.ui import View, Button
 from keep_alive import keep_alive
 import asyncio
 
-# --- VOS CONSTANTES (Gardées) ---
+# --- VOS CONSTANTES ---
 token = os.environ['TOKEN_BOT_DISCORD']
 
 PERCO_CHANNEL_ID = 1366384335615164529 
@@ -15,6 +15,11 @@ CONFIRM_CHANNEL_ID = 1366384437503332464
 TARGET_GUILD_ID = 1366369136648654868
 
 target_guild = discord.Object(id=TARGET_GUILD_ID)
+
+# --- URL DE L'IMAGE POUR L'EMBED DES BOUTONS ---
+# ⚠️ REMPLACEZ CETTE CHAÎNE par l'URL publique de votre image.
+SETUP_IMAGE_URL = "https://cdn.discordapp.com/attachments/1213966404886470676/1437856695375237220/image0.png?ex=6914c3e6&is=69137266&hm=c157790f81a8074898fb44cd33683cdb329dd9f303e8b6d1c09377e055275325&" 
+
 
 # --- IDs DE RÔLES, LABELS ET ÉMOJIS POUR LES 8 BOUTONS ---
 ROLES_PING = {
@@ -36,12 +41,11 @@ bot = commands.Bot(command_prefix="/", intents=intents)
 
 # --- 1. CLASSE POUR LE BOUTON INDIVIDUEL ---
 class PingButton(Button):
-    # Ajout du paramètre 'emoji_btn' et style fixé à danger (rouge)
     def __init__(self, role_id: int, role_name: str, label: str, emoji_btn: str):
         super().__init__(
             label=label,
-            style=discord.ButtonStyle.danger,  # Style ROUGE fixe
-            emoji=emoji_btn,                   # Utilise l'émoji unique
+            style=discord.ButtonStyle.danger,
+            emoji=emoji_btn,
             custom_id=f"ping_button_{role_name.lower().replace(' ', '_')}" 
         )
         self.role_id = role_id
@@ -54,9 +58,9 @@ class PingButton(Button):
         role_mention = f"<@&{self.role_id}>"
         
         if perco_channel:
-            # --- MESSAGE D'ALERTE CORRIGÉ ET COMPLET ---
+            # MESSAGE D'ALERTE (simple, pas d'embed)
             alert_message_content = (
-                f"{role_mention} "  # Mention du rôle ciblé
+                f"{role_mention} "
                 f"**Votre percepteur est attaqué ! 😡 PING DEF ({self.role_name})**"
             )
             
@@ -80,14 +84,13 @@ class PingAttackView(View):
     def __init__(self):
         super().__init__(timeout=None)
         
-        # Création dynamique des 8 boutons
         for role_key, role_data in ROLES_PING.items():
             self.add_item(
                 PingButton(
                     role_id=role_data["id"],
                     role_name=role_key,
                     label=role_data["label"],
-                    emoji_btn=role_data["emoji"]  # Passage de l'émoji
+                    emoji_btn=role_data["emoji"]
                 )
             )
 
@@ -99,7 +102,6 @@ async def on_ready():
     print(f"✅ Bot Connecté en tant que {bot.user}")
     
     try:
-        # Ajout de la View persistante
         bot.add_view(PingAttackView())
         
         # Synchronisation des commandes slash
@@ -126,6 +128,11 @@ async def setup_ping_button(interaction: discord.Interaction):
         color=discord.Color.blue()
     )
     setup_embed.set_footer(text="Ce message est permanent. Ne le supprimez pas.")
+    
+    # --- AJOUT DE L'IMAGE À L'EMBED DE SETUP ---
+    if SETUP_IMAGE_URL and SETUP_IMAGE_URL != "URL_DE_VOTRE_IMAGE_POUR_LE_PANNEAU_DE_BOUTONS_ICI":
+        setup_embed.set_image(url=SETUP_IMAGE_URL)
+    # ----------------------------------------
     
     try:
         # Envoi du message permanent avec la View (les 8 boutons)
