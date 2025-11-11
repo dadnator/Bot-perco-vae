@@ -42,8 +42,6 @@ class PingAttackView(View):
         
         # Récupération des salons et de la mention de rôle
         perco_channel = bot.get_channel(PERCO_CHANNEL_ID)
-        thanks_channel = bot.get_channel(THANKS_CHANNEL_ID)
-        role_mention = f"<@&{ROLE_ID}>"
         
         if perco_channel:
             # --- MESSAGE D'ALERTE SIMPLIFIÉ ---
