@@ -9,10 +9,10 @@ import asyncio
 # --- VOS CONSTANTES ---
 token = os.environ['TOKEN_BOT_DISCORD']
 
-PERCO_CHANNEL_ID = 1366384335615164529 
-CONFIRM_CHANNEL_ID = 1366384437503332464 
+PERCO_CHANNEL_ID = 1315738021953409094 
+CONFIRM_CHANNEL_ID = 1438511744053022720
 
-TARGET_GUILD_ID = 1366369136648654868
+TARGET_GUILD_ID = 1315380827106054236
 
 target_guild = discord.Object(id=TARGET_GUILD_ID)
 
@@ -23,15 +23,15 @@ SETUP_IMAGE_URL = "https://i.imgur.com/8setyQq.png"
 
 # --- IDs DE RÔLES, LABELS ET ÉMOJIS POUR LES 8 BOUTONS ---
 ROLES_PING = {
-    "Coca": {"id": 1437803787061301308, "label": " Coca", "emoji": "<:coca:1337898909321793588>"},
-    "Skypeia": {"id": 1437803979336843346, "label": " Skypeia", "emoji": "<:sky:1337898940963750010>"},
-    "Origami": {"id": 1437804353531678863, "label": " Origami", "emoji": "<:ori:1337898349478805566>"},
-    "Pase-Hyfic": {"id": 1437804605605019739, "label": " Pase-Hyfic", "emoji": "<:pase:1355031214033076326>"},
-    "Sleeping": {"id": 1437803468474552462, "label": " Sleeping", "emoji": "<:TheSleepingBlossoms:1359180403155406878>"},
-    "Sinaloa": {"id": 1437803888421113898, "label": " Sinaloa", "emoji": "<:SINALOA:1391477497618759720>"},
-    "La Bande": {"id": 1437804134660050964, "label": " La Bande", "emoji": "<:LABANDE:1388101932886917222>"},
-    "Bro's": {"id": 1437804247042494474, "label": " Bro's", "emoji": "<:Bros:1435705562066063491>"},
-    "Prisme": {"id": 1437804247042494474, "label": " Prisme", "emoji": "<:VAE:1414562951985238096>"},
+    "Coca": {"id": 1315717521147428905, "label": " Coca", "emoji": "<:coca:1337898909321793588>"},
+    "Skypeia": {"id": 1315717381745676308, "label": " Skypeia", "emoji": "<:sky:1337898940963750010>"},
+    "Origami": {"id": 1315717630249930812, "label": " Origami", "emoji": "<:ori:1337898349478805566>"},
+    "Pase-Hyfic": {"id": 1354933423348908204, "label": " Pase-Hyfic", "emoji": "<:pase:1355031214033076326>"},
+    "Sleeping": {"id": 1356900923976323213, "label": " Sleeping", "emoji": "<:TheSleepingBlossoms:1359180403155406878>"},
+    "Sinaloa": {"id": 1386733263233617961, "label": " Sinaloa", "emoji": "<:SINALOA:1391477497618759720>"},
+    "La Bande": {"id": 1387896447801884864, "label": " La Bande", "emoji": "<:LABANDE:1388101932886917222>"},
+    "Bro's": {"id": 1435704458079375580, "label": " Bro's", "emoji": "<:Bros:1435705562066063491>"},
+    "Prisme": {"id": 1318613836055449702, "label": " Prisme", "emoji": "<:VAE:1414562951985238096>"},
 }
 
 
