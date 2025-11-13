@@ -24,7 +24,7 @@ SETUP_IMAGE_URL = "https://i.imgur.com/8setyQq.png"
 # --- IDs DE RÔLES, LABELS ET ÉMOJIS POUR LES 8 BOUTONS ---
 ROLES_PING = {
     "Coca": {"id": 1315717521147428905, "label": " Coca", "emoji": "<:coca:1337898909321793588>"},
-    "Skypeia": {"id": 1315717381745676308, "label": " Skypeia", "emoji": "<:sky:1337898940963750010>"},
+    "Skypiea": {"id": 1315717381745676308, "label": " Skypiea", "emoji": "<:sky:1337898940963750010>"},
     "Origami": {"id": 1315717630249930812, "label": " Origami", "emoji": "<:ori:1337898349478805566>"},
     "Pase-Hyfic": {"id": 1354933423348908204, "label": " Pase-Hyfic", "emoji": "<:pase:1355031214033076326>"},
     "Sleeping": {"id": 1356900923976323213, "label": " Sleeping", "emoji": "<:TheSleepingBlossoms:1359180403155406878>"},
