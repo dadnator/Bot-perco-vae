@@ -57,12 +57,16 @@ class PingButton(Button):
         
         perco_channel = interaction.client.get_channel(PERCO_CHANNEL_ID)
         role_mention = f"<@&{self.role_id}>"
+
+        # Récupération du nom d'affichage de l'utilisateur (username ou nickname s'il est dans la guilde)
+        # On utilise interaction.user.display_name pour obtenir le nom le plus pertinent
+        user_display_name = interaction.user.display_name
         
         if perco_channel:
             # MESSAGE D'ALERTE (simple, pas d'embed)
             alert_message_content = (
                 f"{role_mention} "
-                f"**Votre percepteur est attaqué !**"
+                f"**Votre percepteur est attaqué !** (Pingé par **{user_display_name}**)" # <-- MODIFICATION ICI
             )
             
             # Envoi du message d'alerte dans le salon PERCO_CHANNEL
