@@ -31,6 +31,7 @@ ROLES_PING = {
     "Sinaloa": {"id": 1386733263233617961, "label": " Sinaloa", "emoji": "<:SINALOA:1391477497618759720>"},
     "La Bande": {"id": 1387896447801884864, "label": " La Bande", "emoji": "<:LABANDE:1388101932886917222>"},
     "Bro's": {"id": 1435704458079375580, "label": " Bro's", "emoji": "<:Bros:1435705562066063491>"},
+    "Legend's": {"id": 1438974772435222628, "label": " Legend's", "emoji": "🟩"},
     "Prisme": {"id": 1318613836055449702, "label": " Prisme", "emoji": "<:VAE:1414562951985238096>"},
 }
 
