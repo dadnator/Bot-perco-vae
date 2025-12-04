@@ -9,10 +9,10 @@ import asyncio
 # --- VOS CONSTANTES ---
 token = os.environ['TOKEN_BOT_DISCORD']
 
-#PERCO_CHANNEL_ID = 1315738021953409094 
-#CONFIRM_CHANNEL_ID = 1438511744053022720
+PERCO_CHANNEL_ID = 1446103983046266880 
+CONFIRM_CHANNEL_ID = 1446104046300696598
 
-#TARGET_GUILD_ID = 1315380827106054236
+TARGET_GUILD_ID = 1445883050163703904
 
 target_guild = discord.Object(id=TARGET_GUILD_ID)
 
@@ -23,16 +23,8 @@ SETUP_IMAGE_URL = "https://i.imgur.com/8setyQq.png"
 
 # --- IDs DE RÔLES, LABELS ET ÉMOJIS POUR LES 8 BOUTONS ---
 ROLES_PING = {
-    "Coca": {"id": 1315717521147428905, "label": " Coca", "emoji": "<:coca:1337898909321793588>"},
-    "Skypiea": {"id": 1315717381745676308, "label": " Skypiea", "emoji": "<:sky:1337898940963750010>"},
-    "Origami": {"id": 1315717630249930812, "label": " Origami", "emoji": "<:ori:1337898349478805566>"},
-    "Pase-Hyfic": {"id": 1354933423348908204, "label": " Pase-Hyfic", "emoji": "<:pase:1355031214033076326>"},
-    "Sleeping": {"id": 1356900923976323213, "label": " Sleeping", "emoji": "<:TheSleepingBlossoms:1359180403155406878>"},
-    "Sinaloa": {"id": 1386733263233617961, "label": " Sinaloa", "emoji": "<:SINALOA:1391477497618759720>"},
-    "La Bande": {"id": 1387896447801884864, "label": " La Bande", "emoji": "<:LABANDE:1388101932886917222>"},
-    "Bro's": {"id": 1435704458079375580, "label": " Bro's", "emoji": "<:Bros:1435705562066063491>"},
-    "Legend's": {"id": 1438974772435222628, "label": " Legend's", "emoji": "<:Legends:1438987887289831669>"},
-    "Prisme": {"id": 1318613836055449702, "label": " Prisme", "emoji": "<:VAE:1414562951985238096>"},
+    "Sleeping": {"id": 1446103551951638570, "label": " Sleeping", "emoji": "<:TheSleepingBlossoms:1359180403155406878>"},
+    "La Bande": {"id": 1446104186533056684, "label": " La Bande", "emoji": "<:LABANDE:1388101932886917222>"},
 }
 
 
