@@ -23,8 +23,8 @@ SETUP_IMAGE_URL = "https://i.imgur.com/8setyQq.png"
 
 # --- IDs DE RÔLES, LABELS ET ÉMOJIS POUR LES 8 BOUTONS ---
 ROLES_PING = {
-    "Sleeping": {"id": 1446103551951638570, "label": " Sleeping", "emoji": ":cherry_blossom: "},
-    "La Bande": {"id": 1446104186533056684, "label": " La Bande", "emoji": ":crossed_swords: "},
+    "Sleeping": {"id": 1446103551951638570, "label": " Sleeping", "emoji": "🌸"},
+    "La Bande": {"id": 1446104186533056684, "label": " La Bande", "emoji": "⚔️"},
 }
 
 
