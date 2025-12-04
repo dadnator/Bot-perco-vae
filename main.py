@@ -146,4 +146,4 @@ async def setup_ping_button(interaction: discord.Interaction):
 
 # --- LANCEMENT DU BOT ---
 keep_alive()
-#bot.run(token)
+bot.run(token)
