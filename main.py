@@ -25,7 +25,7 @@ SETUP_IMAGE_URL = "https://i.imgur.com/8setyQq.png"
 ROLES_PING = {
     "Sleeping": {"id": 1446103551951638570, "label": " Sleeping", "emoji": "<:TheSleepingBlossoms:1446119822260965436>"},
     "La Bande": {"id": 1446104186533056684, "label": " La Bande", "emoji": "<:LABANDE:1446119877801672755>"},
-    "Skypiea'": {"id": 1446104186533056684, "label": " Skypiea'", "emoji": "☁️"},
+    "Skypiea'": {"id": 1447284168693383229, "label": " Skypiea'", "emoji": "☁️"},
 }
 }
 
