@@ -8,32 +8,21 @@ import asyncio
 
 # --- VOS CONSTANTES ---
 token = os.environ['TOKEN_BOT_DISCORD']
-
 PERCO_CHANNEL_ID = 1446103983046266880 
-CONFIRM_CHANNEL_ID = 1446104046300696598
-
 TARGET_GUILD_ID = 1445883050163703904
-
 target_guild = discord.Object(id=TARGET_GUILD_ID)
 
-# --- URL DE L'IMAGE POUR L'EMBED DES BOUTONS ---
-# ⚠️ REMPLACEZ CETTE CHAÎNE par l'URL publique de votre image.
 SETUP_IMAGE_URL = "https://i.imgur.com/8setyQq.png" 
 
-
-# --- IDs DE RÔLES, LABELS ET ÉMOJIS POUR LES 8 BOUTONS ---
 ROLES_PING = {
     "Sleeping": {"id": 1446103551951638570, "label": " Sleeping", "emoji": "<:TheSleepingBlossoms:1446119822260965436>"},
     "La Bande": {"id": 1446104186533056684, "label": " La Bande", "emoji": "<:LABANDE:1446119877801672755>"},
     "Skypiea'": {"id": 1447284168693383229, "label": " Skypiea'", "emoji": "<:Skypea:1447298600169242624>"},
-
 }
 
-
-# Configuration du bot
 intents = discord.Intents.default()
+intents.members = True # Nécessaire pour display_name
 bot = commands.Bot(command_prefix="/", intents=intents)
-
 
 # --- 1. CLASSE POUR LE BOUTON INDIVIDUEL ---
 class PingButton(Button):
@@ -48,104 +37,69 @@ class PingButton(Button):
         self.role_name = role_name
         
     async def callback(self, interaction: discord.Interaction):
-        await interaction.response.defer(ephemeral=True)
-        
-        perco_channel = interaction.client.get_channel(PERCO_CHANNEL_ID)
-        role_mention = f"<@&{self.role_id}>"
+        # OPTIMISATION : On répond immédiatement pour éviter le timeout/rate-limit
+        try:
+            perco_channel = interaction.client.get_channel(PERCO_CHANNEL_ID)
+            if not perco_channel:
+                return await interaction.response.send_message("❌ Salon introuvable.", ephemeral=True)
 
-        # Récupération du nom d'affichage de l'utilisateur (username ou nickname s'il est dans la guilde)
-        # On utilise interaction.user.display_name pour obtenir le nom le plus pertinent
-        user_display_name = interaction.user.display_name
-        
-        if perco_channel:
-            # MESSAGE D'ALERTE (simple, pas d'embed)
-            alert_message_content = (
-                f"{role_mention} "
-                f"**Votre percepteur est attaqué !** (Pingé par **{user_display_name}**)" # <-- MODIFICATION ICI
-            )
+            role_mention = f"<@&{self.role_id}>"
+            user_display_name = interaction.user.display_name
             
-            # Envoi du message d'alerte dans le salon PERCO_CHANNEL
+            # Envoi du ping dans le salon
             await perco_channel.send(
-                content=alert_message_content,
+                content=f"{role_mention} **Votre percepteur est attaqué !** (Pingé par **{user_display_name}**)",
                 allowed_mentions=discord.AllowedMentions(roles=True) 
             )
             
-            # Réponse éphémère à l'utilisateur
-            await interaction.followup.send(
-                f"✅ Alerte PING DEF envoyée pour le rôle **{self.role_name}** ! Merci pour le ping!", 
-                ephemeral=True
-            )
-        else:
-            await interaction.followup.send("❌ Le salon d'alerte est introuvable. Veuillez vérifier PERCO_CHANNEL_ID.", ephemeral=True)
+            # Confirmation à l'utilisateur
+            await interaction.response.send_message(f"✅ Alerte envoyée pour **{self.role_name}** !", ephemeral=True)
+            
+        except discord.errors.HTTPException as e:
+            if e.status == 429:
+                print("🛑 Rate limit détecté lors d'un clic bouton.")
 
-
-# --- 2. CLASSE CONTENANT TOUS LES BOUTONS (VIEW) ---
+# --- 2. CLASSE VIEW ---
 class PingAttackView(View):
     def __init__(self):
         super().__init__(timeout=None)
-        
         for role_key, role_data in ROLES_PING.items():
-            self.add_item(
-                PingButton(
-                    role_id=role_data["id"],
-                    role_name=role_key,
-                    label=role_data["label"],
-                    emoji_btn=role_data["emoji"]
-                )
-            )
+            self.add_item(PingButton(role_id=role_data["id"], role_name=role_key, label=role_data["label"], emoji_btn=role_data["emoji"]))
 
-
-# --- 3. ÉVÉNEMENTS DU BOT ---
+# --- 3. ÉVÉNEMENTS ---
 @bot.event
 async def on_ready():
-    """Se déclenche lorsque le bot est prêt."""
-    print(f"✅ Bot Connecté en tant que {bot.user}")
+    print(f"✅ Bot Connecté : {bot.user}")
+    
+    # PAUSE DE SÉCURITÉ : Laisse le bot se stabiliser avant de synchroniser
+    await asyncio.sleep(5)
     
     try:
         bot.add_view(PingAttackView())
-        
-        # Synchronisation des commandes slash
-        bot.tree.clear_commands(guild=None) 
-        await bot.tree.sync() 
-        synced = await bot.tree.sync(guild=target_guild) 
-        print(f"✅ Commandes slash synchronisées pour le serveur cible ({len(synced)} commande(s))")
-        
+        # UNE SEULE SYNCHRO : On synchronise uniquement sur le serveur cible
+        await bot.tree.sync(guild=target_guild) 
+        print(f"✅ Commandes slash synchronisées sur le serveur.")
     except Exception as e:
-        print(f"❌ Erreur lors de la synchronisation ou de l'ajout de la View : {e}")
+        print(f"❌ Erreur Sync : {e}")
 
-
-# --- 4. COMMANDE POUR LE SETUP (création du message permanent) ---
-
-@bot.tree.command(name="setup_ping_button", description="Envoie l'embed permanent avec les 8 boutons d'alerte.", guild=target_guild)
+# --- 4. COMMANDE SETUP ---
+@bot.tree.command(name="setup_ping_button", description="Envoie l'embed avec les boutons.", guild=target_guild)
 @app_commands.default_permissions(administrator=True) 
 async def setup_ping_button(interaction: discord.Interaction):
-    await interaction.response.defer(ephemeral=True)
-
-    # Création de l'embed pour le panneau de contrôle
     setup_embed = discord.Embed(
         title="📢 Un Perco Attaqué ",
-        description="**CLIQUEZ UNE FOIS** sur le bouton correspondant au groupe souhaité pour envoyer un ping unique d'alerte Percepteur.",
+        description="**CLIQUEZ UNE FOIS** sur le bouton pour alerter.",
         color=discord.Color.blue()
     )
-    setup_embed.set_footer(text="Ce message est permanent. Ne le supprimez pas.")
-    
-    # --- AJOUT DE L'IMAGE À L'EMBED DE SETUP ---
-    if SETUP_IMAGE_URL and SETUP_IMAGE_URL != "URL_DE_VOTRE_IMAGE_POUR_LE_PANNEAU_DE_BOUTONS_ICI":
+    if SETUP_IMAGE_URL:
         setup_embed.set_image(url=SETUP_IMAGE_URL)
-    # ----------------------------------------
     
-    try:
-        # Envoi du message permanent avec la View (les 8 boutons)
-        await interaction.channel.send(
-            embed=setup_embed, 
-            view=PingAttackView()
-        )
-        
-        await interaction.followup.send("✅ Panneau de contrôle des 8 boutons d'alerte envoyé dans ce salon.", ephemeral=True)
-    except Exception as e:
-        await interaction.followup.send(f"❌ Erreur lors de l'envoi du message : {e}", ephemeral=True)
+    await interaction.channel.send(embed=setup_embed, view=PingAttackView())
+    await interaction.response.send_message("✅ Panneau envoyé.", ephemeral=True)
 
-
-# --- LANCEMENT DU BOT ---
+# --- LANCEMENT ---
 keep_alive()
-bot.run(token)
+try:
+    bot.run(token)
+except Exception as e:
+    print(f"❌ Erreur fatale au lancement : {e}")
