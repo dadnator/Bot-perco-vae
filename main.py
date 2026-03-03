@@ -19,6 +19,8 @@ ROLES_PING = {
     "La Bande": {"id": 1446104186533056684, "label": " La Bande", "emoji": "<:LABANDE:1446119877801672755>"},
     "Skypiea'": {"id": 1447284168693383229, "label": " Skypiea'", "emoji": "<:Skypea:1447298600169242624>"},
     "Purge": {"id": 1473043558704480318, "label": " Purge", "emoji": "<:Purge:1473218519997878416>"},
+    "Légion": {"id": 1473043558704480318, "label": " Légion", "emoji": "<:Legion:1478305376201085123>"},
+    "Yaco": {"id": 1473043558704480318, "label": " Yaco", "emoji": "<:Yaco:1478304478858842222>"},
 }
 
 
