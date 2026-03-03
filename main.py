@@ -22,7 +22,7 @@ ROLES_PING = {
     "Légion": {"id": 1473043558704480318, "label": " Légion", "emoji": "<:Legion:1478305376201085123>"},
     "Yaco": {"id": 1473043558704480318, "label": " Yaco", "emoji": "<:Yaco:1478304478858842222>"},
 }
-
+#a
 
 intents = discord.Intents.default()
 intents.members = True # Nécessaire pour display_name
