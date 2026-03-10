@@ -91,16 +91,28 @@ async def on_ready():
 @bot.tree.command(name="setup_ping_button", description="Envoie l'embed avec les boutons.", guild=target_guild)
 @app_commands.default_permissions(administrator=True) 
 async def setup_ping_button(interaction: discord.Interaction):
-    setup_embed = discord.Embed(
-        title="📢 Un Perco Attaqué ",
-        description="**CLIQUEZ UNE FOIS** sur le bouton pour alerter.",
-        color=discord.Color.blue()
-    )
-    if SETUP_IMAGE_URL:
-        setup_embed.set_image(url=SETUP_IMAGE_URL)
-    
-    await interaction.channel.send(embed=setup_embed, view=PingAttackView())
-    await interaction.response.send_message("✅ Panneau envoyé.", ephemeral=True)
+    # 1. On indique à Discord qu'on a reçu la commande (évite le timeout de 3s)
+    await interaction.response.defer(ephemeral=True)
+
+    try:
+        setup_embed = discord.Embed(
+            title="📢 Un Perco Attaqué ",
+            description="**CLIQUEZ UNE FOIS** sur le bouton pour alerter.",
+            color=discord.Color.blue()
+        )
+        
+        if SETUP_IMAGE_URL:
+            setup_embed.set_image(url=SETUP_IMAGE_URL)
+        
+        # 2. On envoie l'embed dans le salon
+        await interaction.channel.send(embed=setup_embed, view=PingAttackView())
+        
+        # 3. On confirme à l'admin via followup (puisqu'on a fait un defer)
+        await interaction.followup.send("✅ Panneau envoyé avec succès !")
+        
+    except Exception as e:
+        # En cas d'erreur lors de l'envoi de l'embed
+        await interaction.followup.send(f"❌ Erreur lors de l'envoi : {e}")
 
 # --- LANCEMENT ---
 keep_alive()
