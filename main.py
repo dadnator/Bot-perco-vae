@@ -17,7 +17,9 @@ SETUP_IMAGE_URL = "https://i.imgur.com/8setyQq.png"
 ROLES_PING = {
     "Sleeping": {"id": 1446103551951638570, "label": " Sleeping", "emoji": "<:TheSleepingBlossoms:1446119822260965436>"},
     "La Bande": {"id": 1446104186533056684, "label": " La Bande", "emoji": "<:LABANDE:1446119877801672755>"},
+    "La Bande2": {"id": 1492223642262700122, "label": " La Bande2", "emoji": "<:LABANDE:1446119877801672755>"},
     "Pantheon'": {"id": 1447284168693383229, "label": " Pantheon", "emoji": "<:Pantheon:1488089492580732948>"},
+    "Pantheon'2": {"id": 1492223577351786537, "label": " Pantheon2", "emoji": "<:Pantheon:1488089492580732948>"},
     "Purge": {"id": 1473043558704480318, "label": " Purge", "emoji": "<:Purge:1473218519997878416>"},
     "Légion": {"id": 1478171491966128205, "label": " Légion", "emoji": "<:Legion:1478305376201085123>"},
     "Yaco": {"id": 1478170611778982069, "label": " Yaco", "emoji": "<:Yaco:1478304478858842222>"},
