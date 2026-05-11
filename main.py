@@ -32,8 +32,8 @@ ROLES_PING = {
     "Pantheon'2": {"id": 1492223577351786537, "label": " Pantheon2", "emoji": "<:Pantheon:1488089492580732948>", "row": 1},
     
     # Ligne 3 : Rixe
-    "Rixe": {"id": 1494432888295264316, "label": " Rixe", "emoji": "<:Rixe:1494555970427158619>", "row": 2},
-    "Rixe2": {"id": 1494439212483870790, "label": " Rixe2", "emoji": "<:Rixe:1494555970427158619>", "row": 2},
+    "Rixe": {"id": 1494432888295264316, "label": " Rixe", "emoji": "<:Rixe:1495552964927160450>", "row": 2},
+    "Rixe2": {"id": 1494439212483870790, "label": " Rixe2", "emoji": "<:Rixe:1495552964927160450>", "row": 2},
     "Légion": {"id": 1478171491966128205, "label": " Légion", "emoji": "<:Legion:1478305376201085123>", "row": 2},
     "Légion2": {"id": 1495549712378363995, "label": " Légion2", "emoji": "<:Legion:1478305376201085123>", "row": 2},
     
