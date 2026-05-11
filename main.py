@@ -34,11 +34,12 @@ ROLES_PING = {
     # Ligne 3 : Rixe
     "Rixe": {"id": 1494432888295264316, "label": " Rixe", "emoji": "<:Rixe:1494555970427158619>", "row": 2},
     "Rixe2": {"id": 1494439212483870790, "label": " Rixe2", "emoji": "<:Rixe:1494555970427158619>", "row": 2},
+    "Légion": {"id": 1478171491966128205, "label": " Légion", "emoji": "<:Legion:1478305376201085123>", "row": 2},
+    "Légion2": {"id": 1495549712378363995, "label": " Légion2", "emoji": "<:Legion:1478305376201085123>", "row": 2},
     
     # Ligne 4 : Sleeping, Purge, Légion
     "Sleeping": {"id": 1446103551951638570, "label": " Sleeping", "emoji": "<:TheSleepingBlossoms:1446119822260965436>", "row": 3},
     "Purge": {"id": 1473043558704480318, "label": " Purge", "emoji": "<:Purge:1473218519997878416>", "row": 3},
-    "Légion": {"id": 1478171491966128205, "label": " Légion", "emoji": "<:Legion:1478305376201085123>", "row": 3},
     
     # Ligne 5 : Yaco, La Secte, Prisme
     "Yaco": {"id": 1478170611778982069, "label": " Yaco", "emoji": "<:Yaco:1478304478858842222>", "row": 4},
