@@ -17,8 +17,8 @@ SETUP_IMAGE_URL = "https://i.imgur.com/8setyQq.png"
 # --- CONFIGURATION DES LIGNES ---
 # row 0 : La Bande
 # row 1 : Pantheon
-# row 2 : Rixe
-# row 3 : Sleeping, Purge, Légion
+# row 2 : Rixe, Legion
+# row 3 : Sleeping, Sleeping2, Purge
 # row 4 : Yaco, La Secte, Prisme
 
 # Organisation des rôles par ligne (row de 0 à 4)
@@ -39,6 +39,7 @@ ROLES_PING = {
     
     # Ligne 4 : Sleeping, Purge, Légion
     "Sleeping": {"id": 1446103551951638570, "label": " Sleeping", "emoji": "<:TheSleepingBlossoms:1446119822260965436>", "row": 3},
+    "Brave": {"id": 1508691585641218170, "label": " Brave", "emoji": "<:TheSleepingBlossoms:1446119822260965436>", "row": 3},
     "Purge": {"id": 1473043558704480318, "label": " Purge", "emoji": "<:Purge:1473218519997878416>", "row": 3},
     
     # Ligne 5 : Yaco, La Secte, Prisme
