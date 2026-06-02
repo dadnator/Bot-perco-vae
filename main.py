@@ -43,7 +43,7 @@ ROLES_PING = {
     "Purge": {"id": 1473043558704480318, "label": " Purge", "emoji": "<:Purge:1473218519997878416>", "row": 3},
     
     # Ligne 5 : Yaco, La Secte, Prisme
-    "Yaco": {"id": 1478170611778982069, "label": " Yaco", "emoji": "<:Yaco:1478304478858842222>", "row": 4},
+    "Gang": {"id": 1478170611778982069, "label": " Gang", "emoji": "<:Yaco:1478304478858842222>", "row": 4},
     "La Secte": {"id": 1491550881492107264, "label": " La Secte", "emoji": "<:Lasecte:1491653111230500945>", "row": 4},
     "Prisme": {"id": 1446129172064764020, "label": " Prisme", "emoji": "<:gotham:1451529054925881354>", "row": 4},
 }
