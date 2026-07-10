@@ -41,7 +41,7 @@ ROLES_PING = {
     "Sleeping": {"id": 1446103551951638570, "label": " Sleeping", "emoji": "<:TheSleepingBlossoms:1446119822260965436>", "row": 3},
     "Brave": {"id": 1508691585641218170, "label": " Brave", "emoji": "<:TheSleepingBlossoms:1446119822260965436>", "row": 3},
     "Purge": {"id": 1473043558704480318, "label": " Purge", "emoji": "<:Purge:1473218519997878416>", "row": 3},
-    "Purge2": {"id": 1525136818633441362, "label": " Purge", "emoji": "<:Purge:1473218519997878416>", "row": 3},
+    "Purge2": {"id": 1525136818633441362, "label": " Purge2", "emoji": "<:Purge:1473218519997878416>", "row": 3},
     
     # Ligne 5 : Yaco, La Secte, Prisme
     "Gang": {"id": 1478170611778982069, "label": " Gang", "emoji": "<:Yaco:1478304478858842222>", "row": 4},
