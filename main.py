@@ -59,10 +59,10 @@ bot = commands.Bot(command_prefix="/", intents=intents)
 
 # --- 1. CLASSE POUR LE BOUTON ---
 class PingButton(Button):
-    def __init__(self, role_id: int, role_name: str, label: str, emoji_btn: str, row: int):
+    def __init__(self, role_id: int, role_name: str, label: str, emoji_btn: str, row: int, style: discord.ButtonStyle):
         super().__init__(
             label=label,
-            style=discord.ButtonStyle.danger,
+            style=style,
             emoji=emoji_btn,
             custom_id=f"ping_button_{role_name.lower().replace(' ', '_')}",
             row=row
