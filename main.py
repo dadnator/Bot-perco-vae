@@ -99,7 +99,7 @@ class PingAttackView(View):
                 role_name=role_key, 
                 label=data["label"], 
                 emoji_btn=data["emoji"],
-                row=data["row"]
+                row=data["row"],
                 style=data.get("style", discord.ButtonStyle.danger)
             ))
 
