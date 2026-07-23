@@ -100,6 +100,7 @@ class PingAttackView(View):
                 label=data["label"], 
                 emoji_btn=data["emoji"],
                 row=data["row"]
+                style=data.get("style", discord.ButtonStyle.danger)
             ))
 
 # --- 3. ÉVÉNEMENTS ---
