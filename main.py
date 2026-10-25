@@ -16,8 +16,8 @@ SETUP_IMAGE_URL = "https://i.imgur.com/8setyQq.png"
 
 # --- CONFIGURATION DES LIGNES ---
 # row 0 : La Bande
-# row 1 : Pantheon
-# row 2 : Rixe, Legion
+# row 1 : Gang
+# row 2 : Legion, Honored
 # row 3 : Sleeping, Sleeping2, Purge
 # row 4 : Yaco, La Secte, Prisme
 
@@ -27,17 +27,13 @@ ROLES_PING = {
     "La Bande": {"id": 1446104186533056684, "label": " La Bande", "emoji": "<:LABANDE:1446119877801672755>", "row": 0},
     "La Bande2": {"id": 1492223642262700122, "label": " La Bande2", "emoji": "<:LABANDE:1446119877801672755>", "row": 0},
     
-    # Ligne 2 : Pantheon
-    "Pantheon'": {"id": 1447284168693383229, "label": " Pantheon", "emoji": "<:Pantheon:1488089492580732948>", "row": 1},
-    "Pantheon'2": {"id": 1492223577351786537, "label": " Pantheon2", "emoji": "<:Pantheon:1488089492580732948>", "row": 1},
+    # Ligne 2 : Gang
     "Gang": {"id": 1478170611778982069, "label": " Gang", "emoji": "<:Yaco:1478304478858842222>", "row": 1},
     "Gang2": {"id": 1529748404928909462, "label": " Gang2", "emoji": "<:Yaco:1478304478858842222>", "row": 1},
     
-    # Ligne 3 : Rixe
-    "Rixe": {"id": 1494432888295264316, "label": " Rixe", "emoji": "<:Rixe:1495552964927160450>", "row": 2},
-    "Rixe2": {"id": 1494439212483870790, "label": " Rixe2", "emoji": "<:Rixe:1495552964927160450>", "row": 2},
+    # Ligne 3 : Legion Honored
     "Légion": {"id": 1478171491966128205, "label": " Légion", "emoji": "<:Legion:1478305376201085123>", "row": 2},
-    "Légion2": {"id": 1495549712378363995, "label": " Légion2", "emoji": "<:Legion:1478305376201085123>", "row": 2},
+    "Honored": {"id": 1563825434028802089, "label": " Honored", "emoji": "🛡️", "row": 2},
     
     # Ligne 4 : Sleeping, Purge, Légion
     "Sleeping": {"id": 1446103551951638570, "label": " Sleeping", "emoji": "<:TheSleepingBlossoms:1446119822260965436>", "row": 3},
