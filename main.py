@@ -32,18 +32,18 @@ ROLES_PING = {
     "Gang2": {"id": 1529748404928909462, "label": " Gang2", "emoji": "<:Yaco:1478304478858842222>", "row": 1},
     
     # Ligne 3 : Legion Honored
-    "Légion": {"id": 1478171491966128205, "label": " Légion", "emoji": "<:Legion:1478305376201085123>", "row": 2},
-    "Honored": {"id": 1563825434028802089, "label": " Honored", "emoji": "🛡️", "row": 2},
+    "Purge": {"id": 1473043558704480318, "label": " Purge", "emoji": "<:Purge:1473218519997878416>", "row": 2},
+    "Purge2": {"id": 1525136818633441362, "label": " Purge2", "emoji": "<:Purge:1473218519997878416>", "row": 2},
     
     # Ligne 4 : Sleeping, Purge, Légion
     "Sleeping": {"id": 1446103551951638570, "label": " Sleeping", "emoji": "<:TheSleepingBlossoms:1446119822260965436>", "row": 3},
     "Brave": {"id": 1508691585641218170, "label": " Brave", "emoji": "<:TheSleepingBlossoms:1446119822260965436>", "row": 3},
-    "La Secte": {"id": 1491550881492107264, "label": " La Secte", "emoji": "<:Lasecte:1491653111230500945>", "row": 3},
-    "Tabernak": {"id": 1525954377683308766, "label": " Tabernak", "emoji": "<:French_Tabernak:1526101285386981476>", "row": 3},
- 
+    "Légion": {"id": 1478171491966128205, "label": " Légion", "emoji": "<:Legion:1478305376201085123>", "row": 3},
+    "Honored": {"id": 1563825434028802089, "label": " Honored", "emoji": "🛡️", "row": 3},
+    
     # Ligne 5 : Yaco, La Secte, Prisme
-    "Purge": {"id": 1473043558704480318, "label": " Purge", "emoji": "<:Purge:1473218519997878416>", "row": 4},
-    "Purge2": {"id": 1525136818633441362, "label": " Purge2", "emoji": "<:Purge:1473218519997878416>", "row": 4},
+    "La Secte": {"id": 1491550881492107264, "label": " La Secte", "emoji": "<:Lasecte:1491653111230500945>", "row": 4},
+    "Tabernak": {"id": 1525954377683308766, "label": " Tabernak", "emoji": "<:French_Tabernak:1526101285386981476>", "row": 4},
     "Prisme": {"id": 1446129172064764020, "label": " Prisme", "emoji": "<:gotham:1451529054925881354>", "row": 4},
     "Simu": {"id": 1529740102299942932, "label": " Simu", "emoji": "🛡️", "row": 4, "style": discord.ButtonStyle.primary},
 
