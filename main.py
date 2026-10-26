@@ -28,8 +28,8 @@ ROLES_PING = {
     "La Bande2": {"id": 1492223642262700122, "label": " La Bande2", "emoji": "<:LABANDE:1446119877801672755>", "row": 0},
     
     # Ligne 2 : Gang
-    "Gang": {"id": 1478170611778982069, "label": " Gang", "emoji": "<:Yaco:1478304478858842222>", "row": 1},
-    "Gang2": {"id": 1529748404928909462, "label": " Gang2", "emoji": "<:Yaco:1478304478858842222>", "row": 1},
+    "Gang": {"id": 1478170611778982069, "label": " Gang", "emoji": "<:Gang:1563978059101503729>", "row": 1},
+    "Gang2": {"id": 1529748404928909462, "label": " Gang2", "emoji": "<:Gang:1563978059101503729>", "row": 1},
     
     # Ligne 3 : Legion Honored
     "Purge": {"id": 1473043558704480318, "label": " Purge", "emoji": "<:Purge:1473218519997878416>", "row": 2},
@@ -39,7 +39,7 @@ ROLES_PING = {
     "Sleeping": {"id": 1446103551951638570, "label": " Sleeping", "emoji": "<:TheSleepingBlossoms:1446119822260965436>", "row": 3},
     "Brave": {"id": 1508691585641218170, "label": " Brave", "emoji": "<:TheSleepingBlossoms:1446119822260965436>", "row": 3},
     "Légion": {"id": 1478171491966128205, "label": " Légion", "emoji": "<:Legion:1478305376201085123>", "row": 3},
-    "Honored": {"id": 1563825434028802089, "label": " Honored", "emoji": "🛡️", "row": 3},
+    "Honored": {"id": 1563825434028802089, "label": " Honored", "emoji": "<:Honored:1564164103726047242>", "row": 3},
     
     # Ligne 5 : Yaco, La Secte, Prisme
     "La Secte": {"id": 1491550881492107264, "label": " La Secte", "emoji": "<:Lasecte:1491653111230500945>", "row": 4},
